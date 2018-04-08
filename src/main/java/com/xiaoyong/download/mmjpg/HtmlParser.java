@@ -37,7 +37,10 @@ public class HtmlParser {
             parser.downloadAndSave(parser.getImgUrlsFromMMJpg(newUrl, selectAttr, attr), referer, i);
         }
     }
-
+    
+    /**
+     *   描述：从mmjpg.com抓取图片url
+    **/
     private List<String> getImgUrlsFromMMJpg(String url, String selectAttr, String attr) throws IOException {
         // HtmlUnit 模拟浏览器
         WebClient webClient = new WebClient(BrowserVersion.FIREFOX_52);
@@ -74,7 +77,9 @@ public class HtmlParser {
 
         return imgUrls;
     }
-
+    /**
+     *   描述：通过图片url从服务器下载和获取
+    **/
     private void downloadAndSave(List<String> imgUrls, String referer, int issue) throws Exception {
         ImageDownload download = new ImageDownload();
         System.out.println(imgUrls.size());
