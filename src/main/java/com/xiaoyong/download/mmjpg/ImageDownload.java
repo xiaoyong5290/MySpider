@@ -34,10 +34,10 @@ public class ImageDownload {
     public byte[] getImg(String strUrl,String referer) throws IOException {
         try {
             //设置Fiddler配置
-            System.setProperty("http.proxyHost", "127.0.0.1");
-            System.setProperty("https.proxyHost", "127.0.0.1");
-            System.setProperty("http.proxyPort", "8888");
-            System.setProperty("https.proxyPort", "8888");
+            //System.setProperty("http.proxyHost", "127.0.0.1");
+            //System.setProperty("https.proxyHost", "127.0.0.1");
+            //System.setProperty("http.proxyPort", "8888");
+            //System.setProperty("https.proxyPort", "8888");
             OkHttpClient okHttp = new OkHttpClient();
             Request request = new Request.Builder()
                     .url(strUrl)
