@@ -14,7 +14,7 @@ import java.io.*;
 public class ImageDownload {
 
     /**
-     *   描述：使用InputStream读取图片，防止图片过大撑爆内存
+     *   描述：从输入流中读取图片
     **/
     private static byte[] readInputStream(InputStream instream) throws Exception {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
@@ -34,25 +34,22 @@ public class ImageDownload {
     public byte[] getImg(String strUrl,String referer) throws IOException {
         try {
             //设置Fiddler配置
-            /*System.setProperty("http.proxyHost", "127.0.0.1");
+            System.setProperty("http.proxyHost", "127.0.0.1");
             System.setProperty("https.proxyHost", "127.0.0.1");
             System.setProperty("http.proxyPort", "8888");
-            System.setProperty("https.proxyPort", "8888");*/
+            System.setProperty("https.proxyPort", "8888");
             OkHttpClient okHttp = new OkHttpClient();
-//            构造request，Request使用的是okhttp包中的Request类
             Request request = new Request.Builder()
                     .url(strUrl)
                     .addHeader("Referer", referer)
                     .build();
-//            发送请求，获取响应
             Response response = okHttp.newCall(request).execute();
 
-//            成功时，即状态码为200时
             if (response.isSuccessful()) {
                 System.out.println("状态码：    "+response.code());
             } else {
 //                释放资源
-                response.body().close();
+//                response.body().close();
                 throw new IOException("Unexpected code " + response);
             }
             InputStream input = response.body().byteStream();
@@ -60,9 +57,11 @@ public class ImageDownload {
         } catch (Exception e) {
             System.out.println("没有妹子图片，自动切换URL");
             e.printStackTrace();
+
         }
         return null;
     }
+
 
     /**
      *   描述：将文件存入本地
